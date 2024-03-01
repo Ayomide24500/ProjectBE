@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const taskController_1 = require("../controller/taskController");
+const router = (0, express_1.Router)();
+router.route("/create-task/:projectID").post(taskController_1.createTask);
+router.route("/get-task").get(taskController_1.getTasks);
+router.route("/get-task/:taskId").get(taskController_1.getTasksById);
+router.route("/update-task/:taskId").patch(taskController_1.updateTask);
+router.route("/delete-task/:taskId").delete(taskController_1.deleteTask);
+exports.default = router;
