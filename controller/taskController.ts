@@ -21,6 +21,7 @@ export const createTask = async (req: Request, res: Response) => {
     res.status(201).json({
       message: "Task created",
       data: project,
+      status: 201,
     });
   } catch (error: any) {
     console.log(error);
@@ -28,6 +29,7 @@ export const createTask = async (req: Request, res: Response) => {
     res.status(404).json({
       message: "Error creating task",
       error: error.message,
+      status: 404,
     });
   }
 };
