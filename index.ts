@@ -1,20 +1,18 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import session from "express-session";
-import morgan from "morgan";
 import { mainApp } from "./mainApp";
-// import helmet from "helmet";
 import { dbConfig } from "./utils/dbConfig";
 
 import MongoDB from "connect-mongodb-session";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const MongoDBStore = MongoDB(session);
-// const store = new MongoDBStore({
-//   uri: process.env.MONGODB_URL_ONLINE!,
-//   collection: "sessions",
-// });
+const MongoDBStore = MongoDB(session);
+const store = new MongoDBStore({
+  uri: process.env.MONGODB_URL_ONLINE!,
+  collection: "sessions",
+});
 
 const port: number | string = process.env.port || 1200;
 
@@ -27,9 +25,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
-// app.use(helmet());
-// app.use(morgan("dev"));
 
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
@@ -48,7 +43,7 @@ app.use(
       domain: process.env.APP_URL_DEPLOY,
     },
 
-    // store,
+    store,
   })
 );
 
@@ -56,7 +51,7 @@ mainApp(app);
 const server = app.listen(port, async () => {
   console.clear();
   console.log("connected 👌👍");
-  await dbConfig();
+  dbConfig();
 });
 
 process.on("uncaughtException", (err: Error) => {
