@@ -88,6 +88,11 @@ export const updateProject = async (req: Request, res: Response) => {
   }
 };
 
+export const AssignTask = (req: Request, res: Response) => {
+  try {
+  } catch (error) {}
+};
+
 export const deleteProject = async (req: Request, res: Response) => {
   try {
     const { projectID } = req.params;

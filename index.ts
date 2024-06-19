@@ -10,11 +10,11 @@ import MongoDB from "connect-mongodb-session";
 import dotenv from "dotenv";
 dotenv.config();
 
-const MongoDBStore = MongoDB(session);
-const store = new MongoDBStore({
-  uri: process.env.MONGODB_URL_ONLINE!,
-  collection: "sessions",
-});
+// const MongoDBStore = MongoDB(session);
+// const store = new MongoDBStore({
+//   uri: process.env.MONGODB_URL_ONLINE!,
+//   collection: "sessions",
+// });
 
 const port: number | string = process.env.port || 1200;
 
@@ -48,7 +48,7 @@ app.use(
       domain: process.env.APP_URL_DEPLOY,
     },
 
-    store,
+    // store,
   })
 );
 
@@ -56,7 +56,7 @@ mainApp(app);
 const server = app.listen(port, async () => {
   console.clear();
   console.log("connected 👌👍");
-  dbConfig();
+  await dbConfig();
 });
 
 process.on("uncaughtException", (err: Error) => {
