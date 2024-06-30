@@ -13,19 +13,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbConfig = void 0;
-const mongoose_1 = require("mongoose");
 const dotenv_1 = __importDefault(require("dotenv"));
+const mongoose_1 = require("mongoose");
 dotenv_1.default.config();
+const URL1 = process.env.MONGODB_URL_ONLINE;
+// const URL: string = "mongodb://localhost:27017/pro";
 const dbConfig = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        return yield (0, mongoose_1.connect)(process.env.MONGO_DB_URL_ONLINE)
-            .then(() => {
-            console.log("database connection established🔥❤️🔥");
-        })
-            .catch((err) => console.error());
+        yield (0, mongoose_1.connect)(URL1).then(() => {
+            console.log("Database connection established🔥❤️🔥");
+        });
     }
     catch (error) {
-        return error;
+        console.log("Error connecting to database:", error);
+        throw error;
     }
 });
 exports.dbConfig = dbConfig;
+process.on("unhandledRejection", (reason, promise) => {
+    console.error("Unhandled Rejection at:", promise, "reason:", reason);
+});
