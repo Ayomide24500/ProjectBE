@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import taskModel from "../model/taskmodel";
-import { Types } from "mongoose";
+import { AnyArray, Types } from "mongoose";
 import projectModel from "../model/projectModel";
 
 // Create Task
@@ -10,7 +10,7 @@ export const createTask = async (req: Request, res: Response) => {
     const { name, description } = req.body;
 
     const find = await projectModel.findById(projectID);
-    const project = await taskModel.create({
+    const project: any = await taskModel.create({
       name,
       description,
     });

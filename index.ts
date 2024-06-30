@@ -1,9 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import session from "express-session";
-import morgan from "morgan";
 import { mainApp } from "./mainApp";
-// import helmet from "helmet";
 import { dbConfig } from "./utils/dbConfig";
 
 import MongoDB from "connect-mongodb-session";
@@ -27,9 +25,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
-// app.use(helmet());
-// app.use(morgan("dev"));
 
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());

@@ -31,6 +31,7 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(201).json({
             message: "Task created",
             data: project,
+            status: 201,
         });
     }
     catch (error) {
@@ -38,6 +39,7 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(404).json({
             message: "Error creating task",
             error: error.message,
+            status: 404,
         });
     }
 });

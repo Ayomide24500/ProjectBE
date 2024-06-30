@@ -4,6 +4,7 @@ const mongoose_1 = require("mongoose");
 const taskSchema = new mongoose_1.Schema({
     name: { type: String, unique: true },
     description: { type: String },
+    AssignEmail: { type: String },
     completed: { type: Boolean, default: false },
     deadline: { type: Date },
     status: { type: String, default: "Open" },

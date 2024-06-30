@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProject = exports.updateProject = exports.getProject = exports.getProjectById = exports.createProject = void 0;
+exports.deleteProject = exports.AssignTask = exports.updateProject = exports.getProject = exports.getProjectById = exports.createProject = void 0;
 const projectModel_1 = __importDefault(require("../model/projectModel"));
 const createProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -96,6 +96,12 @@ const updateProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateProject = updateProject;
+const AssignTask = (req, res) => {
+    try {
+    }
+    catch (error) { }
+};
+exports.AssignTask = AssignTask;
 const deleteProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { projectID } = req.params;
