@@ -26,7 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://project-mastros-justyou.vercel.app/" }));
 app.use(express.json());
 
 app.use(
