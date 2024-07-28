@@ -14,19 +14,24 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
-const port: number | string = process.env.port || 1200;
+const port: number | string = process.env.port || 1400;
 
 const app: Application = express();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.header("Access-Control-Allow-Origin", process.env.APP_URL_DEPLOY);
+  const allowedOrigins: any = ["https://project-mastros-justyou.vercel.app"];
+
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://project-mastros-justyou.vercel.app"
+  );
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
+  app.use(cors({ origin: allowedOrigins, credentials: true }));
 });
 
-app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 app.use(
