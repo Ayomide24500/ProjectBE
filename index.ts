@@ -19,7 +19,7 @@ const port: number | string = process.env.port || 1400;
 const app: Application = express();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-  const allowedOrigins: any = ["https://project-mastros-justyou.vercel.app"];
+   const allowedOrigins: any = ["https://project-mastros-justyou.vercel.app"];
 
   res.header(
     "Access-Control-Allow-Origin",
@@ -32,6 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(cors({ origin: "https://project-mastros-justyou.vercel.app" }));
+
 app.use(express.json());
 
 app.use(
